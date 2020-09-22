@@ -5,7 +5,7 @@ import com.google.inject.Key;
 import ru.yofik.lab3.dao.DAO;
 import ru.yofik.lab3.dao.DAOException;
 import ru.yofik.lab3.guiceModules.Lab3Module;
-import ru.yofik.lab3.result.Result;
+import ru.yofik.lab3.model.result.Result;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;

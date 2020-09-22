@@ -5,7 +5,7 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import ru.yofik.lab3.dao.DAO;
 import ru.yofik.lab3.dao.HibernateDAO;
-import ru.yofik.lab3.result.Result;
+import ru.yofik.lab3.model.result.Result;
 
 public class Lab3Module extends AbstractModule {
 
