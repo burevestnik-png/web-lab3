@@ -1,4 +1,4 @@
-package ru.yofik.lab3.result;
+package ru.yofik.lab3.model.result;
 
 public final class Result {
     private final double x;

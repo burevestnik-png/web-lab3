@@ -1,4 +1,4 @@
-package ru.yofik.lab3.user;
+package ru.yofik.lab3.model.user;
 
 import java.util.Objects;
 
