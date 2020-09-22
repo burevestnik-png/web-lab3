@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'war'
+    id "com.matsuyoido.frontend" version "2.0.2"
 }
 
 group 'yofik'
@@ -14,11 +15,15 @@ repositories {
 
 dependencies {
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
     compile files("./libs/logger_adapter-1.0.jar")
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.1'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.3'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3'
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.10.3'
-    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+    compile group: 'javax.faces', name: 'jsf-api', version: '2.1'
+    compile group: 'javax.faces', name: 'jsf-facelets', version: '1.1.11a'
 }
