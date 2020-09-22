@@ -26,4 +26,6 @@ dependencies {
 
     compile group: 'javax.faces', name: 'jsf-api', version: '2.1'
     compile group: 'javax.faces', name: 'jsf-facelets', version: '1.1.11a'
+
+    compile 'com.google.inject:guice:4.2.2'
 }
