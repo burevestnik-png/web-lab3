@@ -14,9 +14,6 @@ repositories {
 }
 
 dependencies {
-    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
-    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
-
     compile files("./libs/logger_adapter-1.0.jar")
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.1'
@@ -24,8 +21,12 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3'
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.10.3'
 
-    compile group: 'javax.faces', name: 'jsf-api', version: '2.1'
-    compile group: 'javax.faces', name: 'jsf-facelets', version: '1.1.11a'
+//    compile group: 'javax.faces', name: 'jsf-api', version: '2.1'
+//    compile group: 'javax.faces', name: 'jsf-facelets', version: '1.1.11a'
 
     compile 'com.google.inject:guice:4.2.2'
+
+    // WEB API FOR JAVA EE
+    providedCompile "javax:javaee-web-api:8.0"
+    compile "org.glassfish:javax.faces:2.2.7"
 }
