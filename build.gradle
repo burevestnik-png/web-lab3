@@ -20,10 +20,6 @@ repositories {
 }
 
 dependencies {
-    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
-    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
-
-    compile files("./libs/logger_adapter-1.0.jar")
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.1'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.3'
@@ -34,9 +30,8 @@ dependencies {
     // Hibernate with PostgreSQL
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '4.1.7.Final'
-    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.14.Final'
-    compile group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.5.Final'
-    compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.4.1.Final'
+
+    // JSF
     compile group: 'com.sun.faces', name: 'jsf-api', version: '2.2.20'
     compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.20'
 
