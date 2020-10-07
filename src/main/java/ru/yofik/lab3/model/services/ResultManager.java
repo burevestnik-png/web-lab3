@@ -1,20 +1,23 @@
-package ru.yofik.lab3.model;
+package ru.yofik.lab3.model.services;
 
 import com.google.inject.Guice;
 import com.google.inject.Key;
-import ru.yofik.lab3.dao.DAO;
-import ru.yofik.lab3.dao.DAOException;
+import ru.yofik.lab3.storage.DAO;
+import ru.yofik.lab3.storage.DAOException;
 import ru.yofik.lab3.guiceModules.Lab3Module;
-import ru.yofik.lab3.model.result.Result;
+import ru.yofik.lab3.model.entities.Result;
 
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean(name = "results")
-@ApplicationScoped
-public class ResultManager {
+@SessionScoped
+public class ResultManager implements Serializable {
+    private static final long UID = 123L;
+
     private DAO<Result> resultDAO;
 
     private final List<Result> results;
@@ -34,11 +37,7 @@ public class ResultManager {
         return results;
     }
 
-    public void setResults() {
-        throw new RuntimeException("Not allowed");
-    }
-
-    public void addResult(double x, double y, int r) {
+    public void addResult(double x, double y, double r) {
         Result result = new Result(x, y, r, HitChecker.isHit(x, y, r));
         results.add(result);
 

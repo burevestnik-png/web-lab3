@@ -1,4 +1,4 @@
-package ru.yofik.lab3.dao;
+package ru.yofik.lab3.storage;
 
 public class DAOException extends Exception {
     public DAOException() {

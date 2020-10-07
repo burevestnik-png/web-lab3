@@ -1,4 +1,6 @@
-package ru.yofik.lab3.model;
+package ru.yofik.lab3.model.services.validator;
+
+import ru.yofik.lab3.model.services.validator.AbstractValidator;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -8,6 +10,9 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator("xValidator")
 public final class XValidator extends AbstractValidator implements Validator {
+    private static final double MIN_X = -5, MAX_X = 3;
+
+
     public XValidator() {
         super("X validation failed.");
     }
@@ -17,7 +22,7 @@ public final class XValidator extends AbstractValidator implements Validator {
         String xString = value.toString();
 
         if (xString == null || xString.isEmpty()) {
-           throw new ValidatorException(createExceptionMessage("X must be a number."));
+           throw new ValidatorException(createExceptionMessage("X must be a double."));
         }
 
         double x;
@@ -25,7 +30,7 @@ public final class XValidator extends AbstractValidator implements Validator {
         try {
             x = Double.parseDouble(xString);
         } catch (NumberFormatException e) {
-            throw new ValidatorException(createExceptionMessage("X must be a number."));
+            throw new ValidatorException(createExceptionMessage("X must be a double."));
         }
 
         if (!isInRange(x)) {
@@ -34,6 +39,6 @@ public final class XValidator extends AbstractValidator implements Validator {
     }
 
     private boolean isInRange(double x) {
-        return true;
+        return x >= MIN_X && x <= MAX_X;
     }
 }

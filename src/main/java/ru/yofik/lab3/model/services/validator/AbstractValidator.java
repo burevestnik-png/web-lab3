@@ -1,4 +1,4 @@
-package ru.yofik.lab3.model;
+package ru.yofik.lab3.model.services.validator;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.validator.ValidatorException;

@@ -1,13 +1,13 @@
-package ru.yofik.lab3.model.result;
+package ru.yofik.lab3.model.entities;
 
 public final class Result {
     private final double x;
     private final double y;
-    private final int r;
+    private final double r;
     private final boolean isHit;
 
 
-    public Result(double x, double y, int r, boolean isHit) {
+    public Result(double x, double y, double r, boolean isHit) {
         this.x = x;
         this.y = y;
         this.r = r;
@@ -23,7 +23,7 @@ public final class Result {
         return y;
     }
 
-    public int getR() {
+    public double getR() {
         return r;
     }
 

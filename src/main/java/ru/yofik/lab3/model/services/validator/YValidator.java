@@ -1,4 +1,6 @@
-package ru.yofik.lab3.model;
+package ru.yofik.lab3.model.services.validator;
+
+import ru.yofik.lab3.model.services.validator.AbstractValidator;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -8,6 +10,9 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator("yValidator")
 public final class YValidator extends AbstractValidator implements Validator {
+    private static final int MIN_Y = -4, MAX_Y = 4;
+
+
     public YValidator() {
         super("Y validation failed.");
     }
@@ -17,15 +22,15 @@ public final class YValidator extends AbstractValidator implements Validator {
         String yString = value.toString();
 
         if (yString == null || yString.isEmpty()) {
-            throw new ValidatorException(createExceptionMessage("Y must be a number."));
+            throw new ValidatorException(createExceptionMessage("Y must be a integer."));
         }
 
-        double y;
+        int y;
 
         try {
-            y = Double.parseDouble(yString);
+            y = Integer.parseInt(yString);
         } catch (NumberFormatException e) {
-            throw new ValidatorException(createExceptionMessage("Y must be a number."));
+            throw new ValidatorException(createExceptionMessage("Y must be a integer."));
         }
 
         if (!isInRange(y)) {
@@ -33,7 +38,7 @@ public final class YValidator extends AbstractValidator implements Validator {
         }
     }
 
-    private boolean isInRange(double y) {
-        return true;
+    private boolean isInRange(int y) {
+        return y >= MIN_Y && y <= MAX_Y;
     }
 }

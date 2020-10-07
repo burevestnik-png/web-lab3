@@ -1,4 +1,6 @@
-package ru.yofik.lab3.model;
+package ru.yofik.lab3.model.services.validator;
+
+import ru.yofik.lab3.model.services.validator.AbstractValidator;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -8,6 +10,9 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator("rValidator")
 public final class RValidator extends AbstractValidator implements Validator {
+    private static final int MIN_R = 2, MAX_R = 5;
+
+
     public RValidator() {
         super("R validation failed.");
     }
@@ -17,7 +22,7 @@ public final class RValidator extends AbstractValidator implements Validator {
         String rString = value.toString();
 
         if (rString == null || rString.isEmpty()) {
-            throw new ValidatorException(createExceptionMessage("R must be a number."));
+            throw new ValidatorException(createExceptionMessage("R must be a integer."));
         }
 
 
@@ -26,7 +31,7 @@ public final class RValidator extends AbstractValidator implements Validator {
         try {
             r = Integer.parseInt(rString);
         } catch (NumberFormatException ex) {
-            throw new ValidatorException(createExceptionMessage("R must be a number."));
+            throw new ValidatorException(createExceptionMessage("R must be a integer."));
         }
 
         if (!isInRange(r)) {
@@ -35,6 +40,6 @@ public final class RValidator extends AbstractValidator implements Validator {
     }
 
     private boolean isInRange(int r) {
-        return true;
+        return r >= MIN_R && r <= MAX_R;
     }
 }
