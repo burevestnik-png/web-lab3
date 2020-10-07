@@ -1,7 +1,5 @@
 package ru.yofik.lab3.model.services.validator;
 
-import ru.yofik.lab3.model.services.validator.AbstractValidator;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;

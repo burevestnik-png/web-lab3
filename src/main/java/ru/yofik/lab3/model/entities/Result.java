@@ -1,43 +1,34 @@
 package ru.yofik.lab3.model.entities;
 
-public final class Result {
-    private final double x;
-    private final double y;
-    private final double r;
-    private final boolean isHit;
+import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "results")
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
+public final class Result implements Serializable {
+    private static final long UID = 1L;
 
 
-    public Result(double x, double y, double r, boolean isHit) {
-        this.x = x;
-        this.y = y;
-        this.r = r;
-        this.isHit = isHit;
-    }
+    @Id
+    @GeneratedValue
+    private long id;
 
+    @Column(nullable = false)
+    private double x;
 
-    public double getX() {
-        return x;
-    }
+    @Column(nullable = false)
+    private double y;
 
-    public double getY() {
-        return y;
-    }
+    @Column(nullable = false)
+    private double r;
 
-    public double getR() {
-        return r;
-    }
-
-    public boolean isHit() {
-        return isHit;
-    }
-
-    @Override
-    public String toString() {
-        return "Result{" +
-                "x=" + x +
-                ", y=" + y +
-                ", r=" + r +
-                ", isHit=" + isHit +
-                '}';
-    }
+    @Column(nullable = false)
+    private boolean isHit;
 }

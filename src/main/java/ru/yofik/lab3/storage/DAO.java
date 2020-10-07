@@ -3,11 +3,11 @@ package ru.yofik.lab3.storage;
 import java.util.List;
 
 public interface DAO<T> {
-    List<T> get() throws DAOException;
+    List<T> get();
 
-    void create(List<T> objects) throws DAOException;
+    void create(List<T> objects);
 
-    void update(List<T> objects) throws DAOException;
+    void update(List<T> objects);
 
-    void delete(List<T> objects) throws DAOException;
+    void delete(List<T> objects);
 }
