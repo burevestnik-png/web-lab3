@@ -21,12 +21,11 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3'
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.10.3'
 
-//    compile group: 'javax.faces', name: 'jsf-api', version: '2.1'
-//    compile group: 'javax.faces', name: 'jsf-facelets', version: '1.1.11a'
+    compile group: 'com.sun.faces', name: 'jsf-api', version: '2.2.20'
+    compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.20'
 
     compile 'com.google.inject:guice:4.2.2'
 
     // WEB API FOR JAVA EE
     providedCompile "javax:javaee-web-api:8.0"
-    compile "org.glassfish:javax.faces:2.2.7"
 }
