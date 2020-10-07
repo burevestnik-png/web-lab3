@@ -12,7 +12,7 @@ public final class RValidator extends AbstractValidator implements Validator {
 
 
     public RValidator() {
-        super("R validation failed.");
+        super(  "R validation failed.");
     }
 
     @Override
