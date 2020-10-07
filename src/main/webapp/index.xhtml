@@ -7,8 +7,9 @@
 <h:body>
     <ui:composition template="/template/layout.xhtml">
         <ui:define name="content">
-            <h1>Стартовая страница JSF</h1>
+            <h1>Стартовая страница JSF2</h1>
             Перейти на страницу <a href="main.xhtml">новосей</a>
+            <h:button onclick="#{resultsBean.addResult(1, 1, 1)}">Click</h:button>
         </ui:define>
     </ui:composition>
 </h:body>

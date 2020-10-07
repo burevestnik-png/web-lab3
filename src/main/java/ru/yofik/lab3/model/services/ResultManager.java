@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-@ManagedBean(name = "results")
+@ManagedBean(name = "resultsBean")
 @SessionScoped
 public class ResultManager implements Serializable {
     private static final long UID = 123L;
@@ -23,7 +23,7 @@ public class ResultManager implements Serializable {
 
 
     public ResultManager() {
-        this.resultDAO = new HibernateDAO<>("From results");
+        this.resultDAO = new HibernateDAO<>("From Result");
         results = resultDAO.get();
     }
 
