@@ -5,7 +5,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+>
 
 <h:head>
     <title>Web lab 3</title>
@@ -24,6 +25,9 @@
     <h:outputStylesheet library="css"
                         name="utility.css"
     />
+    <h:outputStylesheet library="css"
+                        name="clock.css"
+    />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
@@ -39,22 +43,24 @@
 </h:head>
 
 <h:body>
-        <header>
-            <ui:insert name="header" >
-                <ui:include src="/templates/header.xhtml" />
-            </ui:insert>
-        </header>
+    <header>
+        <ui:insert name="header">
+            <ui:include src="/templates/header.xhtml" />
+        </ui:insert>
+    </header>
 
-        <main id="content">
-            <ui:insert name="content" >
-                <ui:include src="/templates/basic-content.xhtml" />
-            </ui:insert>
-        </main>
+    <main id="content" class="container">
+        <ui:insert name="content">
+            <ui:include src="/templates/basic-content.xhtml" />
+        </ui:insert>
+    </main>
 
-        <footer class="page-footer blue-grey">
-            <ui:insert name="footer" >
-                <ui:include src="/templates/footer.xhtml" />
-            </ui:insert>
-        </footer>
+    <footer class="page-footer blue-grey">
+        <ui:insert name="footer">
+            <ui:include src="/templates/footer.xhtml" />
+        </ui:insert>
+    </footer>
+
+    <ui:insert name="scripts" />
 </h:body>
 </html>

@@ -10,9 +10,14 @@
 <h:body>
     <ui:composition template="/templates/layout.xhtml">
         <ui:define name="content">
-                <h1>Стартовая страница JSF2</h1>
-                Перейти на страницу <a href="main.xhtml">новосей</a>
+            <ui:include src="templates/clocks.xhtml"/>
                 <!--            <h:button onclick="#{resultsBean.addResult(1, 1, 1)}">Click</h:button>-->
+        </ui:define>
+
+        <ui:define name="scripts">
+            <h:outputScript library="js"
+                            name="clocks.js"
+            />
         </ui:define>
     </ui:composition>
 </h:body>
