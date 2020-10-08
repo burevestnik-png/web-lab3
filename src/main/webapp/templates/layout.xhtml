@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Web lab 3</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+          crossorigin="anonymous"
+    />
+    <link type="text/css"
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <h:outputStylesheet library="css"
+                        name="main.css"
+    />
+    <h:outputStylesheet library="css"
+                        name="utility.css"
+    />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+    />
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+    ></script>
+
+    <link rel="shortcut icon"
+          href="#{request.contextPath}/assets/favicon/favicon.ico"
+    />
+</h:head>
+
+<h:body>
+        <header>
+            <ui:insert name="header" >
+                <ui:include src="/templates/header.xhtml" />
+            </ui:insert>
+        </header>
+
+        <main id="content">
+            <ui:insert name="content" >
+                <ui:include src="/templates/basic-content.xhtml" />
+            </ui:insert>
+        </main>
+
+        <footer class="page-footer blue-grey">
+            <ui:insert name="footer" >
+                <ui:include src="/templates/footer.xhtml" />
+            </ui:insert>
+        </footer>
+</h:body>
+</html>

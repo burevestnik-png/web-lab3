@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+>
+<body>
+<ui:composition>
+        <nav>
+            <div class="nav-wrapper blue-grey">
+                <h:graphicImage value="/assets/static/logo_transparent.png" />
+                <h:outputLink value="https://github.com/Roggired/web-lab3"
+                              styleClass="brand-logo center"
+                              rel="noreferrer noopener"
+                              target="_blank"
+                >
+                    First time, third lab.
+                </h:outputLink>
+                <ul class="right">
+                    <li>
+                        <h:link outcome="index">
+                            Home
+                        </h:link>
+                    </li>
+                    <li>
+                        <h:link outcome="main">
+                            Graph
+                        </h:link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+</ui:composition>
+</body>
+</html>
