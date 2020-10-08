@@ -4,11 +4,71 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:body>
     <ui:composition template="/templates/layout.xhtml">
         <ui:define name="content">
-                <h1>Текущие новости</h1>
+            <div class="row valign-wrapper"
+                 style="margin-top: 3rem; "
+            >
+                <ui:include src="templates/svg.html" />
+                <div class="col s6 row main-border hoverable">
+                    <h:form>
+                        <p class="center-align">Choose hit options:</p>
+
+                        <div class="col s12 input-field">
+                            <h:inputText id="x-value"
+                                         autocomplete="off"
+                                         required="true"
+                            />
+                            <h:outputLabel for="x-value">X value</h:outputLabel>
+                        </div>
+
+                        <h:selectOneRadio id="y-value"
+                                          layout="lineDirection"
+                                          required="true"
+                                          onclick="(event) => print(event.target.value)"
+                        >
+                            <f:selectItem itemValue="-4"
+                                          itemLabel="-4"
+                            />
+                            <f:selectItem itemValue="-3"
+                                          itemLabel="-3"
+                            />
+                            <f:selectItem itemValue="-2"
+                                          itemLabel="-2"
+                            />
+                            <f:selectItem itemValue="-1"
+                                          itemLabel="-1"
+                            />
+                            <f:selectItem itemValue="0"
+                                          itemLabel="0"
+                            />
+                            <f:selectItem itemValue="1"
+                                          itemLabel="1"
+                            />
+                            <f:selectItem itemValue="2"
+                                          itemLabel="2"
+                            />
+                            <f:selectItem itemValue="3"
+                                          itemLabel="3"
+                            />
+                            <f:selectItem itemValue="4"
+                                          itemLabel="4"
+                            />
+                        </h:selectOneRadio>
+
+                        <div class="col s12 input-field">
+                            <h:inputText id="r-value"
+                                         autocomplete="off"
+                                         required="true"
+                            />
+                            <h:outputLabel for="r-value">R value</h:outputLabel>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 </h:body>

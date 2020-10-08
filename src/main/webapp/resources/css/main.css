@@ -1,5 +1,6 @@
 :root {
   box-sizing: border-box;
+  --main-color: #607d8b;
 }
 
 *,
@@ -17,6 +18,11 @@ body {
 main {
   flex: 1 0 auto;
   display: flex;
+}
+
+.main-border {
+  border: 2px solid var(--main-color);
+  border-radius: 20px;
 }
 
 img {
