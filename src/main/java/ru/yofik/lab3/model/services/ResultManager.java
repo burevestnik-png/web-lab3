@@ -21,21 +21,23 @@ public class ResultManager implements Serializable {
     @Getter
     private final List<Result> results;
 
+    @Getter
+    private Result currentResult;
+
 
     public ResultManager() {
         this.resultDAO = new HibernateDAO<>("From Result");
         results = resultDAO.get();
+        currentResult = new Result();
     }
 
 
-    public void addResult(double x, double y, double r) {
-        Result result = new Result();
-        result.setX(x);
-        result.setY(y);
-        result.setR(r);
-        result.setHit(HitChecker.isHit(x, y, r));
-        results.add(result);
+    public void addResult() {
+        currentResult.setHit(HitChecker.isHit(currentResult.getX(), currentResult.getY(), currentResult.getR()));
+        results.add(currentResult);
 
-        resultDAO.create(Collections.singletonList(result));
+        resultDAO.create(Collections.singletonList(currentResult));
+
+        currentResult = new Result();
     }
 }
