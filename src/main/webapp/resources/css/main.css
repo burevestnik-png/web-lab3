@@ -17,7 +17,7 @@ body {
 
 main {
   flex: 1 0 auto;
-  display: flex;
+  display: flex !important;
 }
 
 .main-border {
@@ -27,4 +27,8 @@ main {
 
 img {
   height: 5rem;
+}
+
+.y-wrapper td {
+  text-align: center;
 }

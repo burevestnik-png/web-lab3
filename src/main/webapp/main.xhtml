@@ -5,70 +5,128 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
 >
 <h:body>
     <ui:composition template="/templates/layout.xhtml">
         <ui:define name="content">
-            <div class="row valign-wrapper"
-                 style="margin-top: 3rem; "
+            <div class="row"
+                 style="margin-top: 3rem;"
             >
                 <ui:include src="templates/svg.html" />
                 <div class="col s6 row main-border hoverable">
                     <h:form>
                         <p class="center-align">Choose hit options:</p>
 
-                        <div class="col s12 input-field">
-                            <h:inputText id="x-value"
-                                         autocomplete="off"
-                                         required="true"
+                        <div class="col s12">
+                            <p:outputLabel for="x-value"
+                                           value="X value (from -5 to 3)"
                             />
-                            <h:outputLabel for="x-value">X value</h:outputLabel>
+                            <p:inputNumber id="x-value"
+                                           autocomplete="off"
+                                           required="true"
+                                           thousandSeparator="false"
+                                           minValue="-5"
+                                           maxValue="3"
+                                           decimalSeparator="."
+                                           decimalPlaces="3"
+                            />
                         </div>
 
-                        <h:selectOneRadio id="y-value"
-                                          layout="lineDirection"
-                                          required="true"
-                                          onclick="(event) => print(event.target.value)"
+                        <div class="col s12 y-wrapper"
+                             style="margin: 2.5rem 0 2.5rem;"
                         >
-                            <f:selectItem itemValue="-4"
-                                          itemLabel="-4"
+                            <p:outputLabel for="y-value"
+                                           value="Choose Y value:"
                             />
-                            <f:selectItem itemValue="-3"
-                                          itemLabel="-3"
-                            />
-                            <f:selectItem itemValue="-2"
-                                          itemLabel="-2"
-                            />
-                            <f:selectItem itemValue="-1"
-                                          itemLabel="-1"
-                            />
-                            <f:selectItem itemValue="0"
-                                          itemLabel="0"
-                            />
-                            <f:selectItem itemValue="1"
-                                          itemLabel="1"
-                            />
-                            <f:selectItem itemValue="2"
-                                          itemLabel="2"
-                            />
-                            <f:selectItem itemValue="3"
-                                          itemLabel="3"
-                            />
-                            <f:selectItem itemValue="4"
-                                          itemLabel="4"
-                            />
-                        </h:selectOneRadio>
+                            <p:selectOneRadio id="y-value"
+                                              layout="grid"
+                                              columns="3"
+                                              required="true"
+                            >
+                                <f:selectItem itemValue="-4"
+                                              itemLabel="-4"
+                                />
+                                <f:selectItem itemValue="-3"
+                                              itemLabel="-3"
+                                />
+                                <f:selectItem itemValue="-2"
+                                              itemLabel="-2"
+                                />
+                                <f:selectItem itemValue="-1"
+                                              itemLabel="-1"
+                                />
+                                <f:selectItem itemValue="0"
+                                              itemLabel="0"
+                                />
+                                <f:selectItem itemValue="1"
+                                              itemLabel="1"
+                                />
+                                <f:selectItem itemValue="2"
+                                              itemLabel="2"
+                                />
+                                <f:selectItem itemValue="3"
+                                              itemLabel="3"
+                                />
+                                <f:selectItem itemValue="4"
+                                              itemLabel="4"
+                                />
+                            </p:selectOneRadio>
+                        </div>
 
-                        <div class="col s12 input-field">
-                            <h:inputText id="r-value"
-                                         autocomplete="off"
-                                         required="true"
+                        <div class="col s12">
+                            <p:outputLabel for="r-value"
+                                           value="R value (from 2 to 5)"
                             />
-                            <h:outputLabel for="r-value">R value</h:outputLabel>
+                            <p:inputNumber id="r-value"
+                                           autocomplete="off"
+                                           required="true"
+                                           thousandSeparator="false"
+                                           minValue="2"
+                                           maxValue="5"
+                                           decimalSeparator="."
+                                           decimalPlaces="3"
+                            />
+                        </div>
+
+                        <div class="col s12 center"
+                             style="margin: 1rem 0 1rem;"
+                        >
+                            <p:commandButton value="Submit"
+                                             ajax="false"
+                                             styleClass="waves-effect waves-light btn"
+                                             style="background-color: #607d8b"
+                            />
                         </div>
                     </h:form>
                 </div>
             </div>
+
+            <h:dataTable value="#{entryBean.entries}"
+                         var="entry"
+                         style="width: 70vw; border-width:2px; margin: 0 auto; border-color:darkblue; border-style:solid;"
+            >
+                <h:column>
+                    <f:facet name="header">X</f:facet>
+                    #{entry.x}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Y</f:facet>
+                    #{entry.y}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">R</f:facet>
+                    #{entry.r}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Result</f:facet>
+                    #{entry.result}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Timestamp</f:facet>
+                    #{entry.timestamp}
+                </h:column>
+            </h:dataTable>
         </ui:define>
     </ui:composition>
 </h:body>

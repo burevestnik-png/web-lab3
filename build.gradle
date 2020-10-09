@@ -33,6 +33,9 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '4.1.7.Final'
     compile group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.5.Final'
 
+    // https://mvnrepository.com/artifact/org.primefaces/primefaces
+    compile group: 'org.primefaces', name: 'primefaces', version: '7.0'
+
     // JavaEE
     providedCompile "javax:javaee-web-api:8.0"
 
