@@ -10,14 +10,15 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import ru.yofik.lab3.model.entities.Result;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import java.io.Serializable;
 import java.util.List;
 import java.util.function.Consumer;
 
 @ManagedBean(name = "dao")
 @ApplicationScoped
-public class ResultDAO {
+public class ResultDAO implements Serializable {
     private static final LoggerAdapter loggerAdapter =
                     LoggerAdapter.createDefault(ResultDAO.class.getSimpleName());
 

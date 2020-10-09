@@ -7,15 +7,23 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
 >
+
 <h:body>
     <ui:composition template="/templates/layout.xhtml">
         <ui:define name="content">
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{resultsBean.init}" />
+            </f:metadata>
+            
             <div class="row"
                  style="margin-top: 3rem;"
             >
-                <ui:include src="templates/svg.html" />
+                <div class="no-select col s6 center">
+                    <ui:include src="templates/svg.html" />
+                </div>
+
                 <div class="col s6 row main-border hoverable">
-                    <h:form>
+                    <h:form id="graph-form">
                         <p class="center-align">Choose hit options:</p>
 
                         <div class="col s12">
@@ -30,6 +38,7 @@
                                            maxValue="3"
                                            decimalSeparator="."
                                            decimalPlaces="3"
+                                           value="#{resultsBean.currentResult.x}"
                             />
                         </div>
 
@@ -43,6 +52,7 @@
                                               layout="grid"
                                               columns="3"
                                               required="true"
+                                              value="#{resultsBean.currentResult.y}"
                             >
                                 <f:selectItem itemValue="-4"
                                               itemLabel="-4"
@@ -86,6 +96,7 @@
                                            maxValue="5"
                                            decimalSeparator="."
                                            decimalPlaces="3"
+                                           value="#{resultsBean.currentResult.r}"
                             />
                         </div>
 
@@ -96,37 +107,50 @@
                                              ajax="false"
                                              styleClass="waves-effect waves-light btn"
                                              style="background-color: #607d8b"
-                            />
+                                             action="#{resultsBean.addResult}"
+                            >
+<!--                                <f:ajax execute="graph-form" render="graph-table" />-->
+                            </p:commandButton>
                         </div>
                     </h:form>
                 </div>
+
+                <div class="col s12">
+                    <h:panelGroup id="graph-table">
+                        <h:dataTable value="#{resultsBean.results}"
+                                     var="result"
+                                     styleClass="centered highlight"
+                        >
+                            <h:column>
+                                <f:facet name="header">X</f:facet>
+                                #{result.x}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Y</f:facet>
+                                #{result.y}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">R</f:facet>
+                                #{result.r}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Result</f:facet>
+                                #{result.hit}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Timestamp</f:facet>
+                                #{result.currentTime}
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </div>
             </div>
 
-            <h:dataTable value="#{entryBean.entries}"
-                         var="entry"
-                         style="width: 70vw; border-width:2px; margin: 0 auto; border-color:darkblue; border-style:solid;"
-            >
-                <h:column>
-                    <f:facet name="header">X</f:facet>
-                    #{entry.x}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Y</f:facet>
-                    #{entry.y}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">R</f:facet>
-                    #{entry.r}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Result</f:facet>
-                    #{entry.result}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Timestamp</f:facet>
-                    #{entry.timestamp}
-                </h:column>
-            </h:dataTable>
+
         </ui:define>
     </ui:composition>
 </h:body>
