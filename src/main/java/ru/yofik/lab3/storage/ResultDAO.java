@@ -10,19 +10,23 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import ru.yofik.lab3.model.entities.Result;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import java.util.List;
 import java.util.function.Consumer;
 
-public final class HibernateDAO<T> implements DAO<T> {
+@ManagedBean(name = "dao")
+@ApplicationScoped
+public class ResultDAO {
     private static final LoggerAdapter loggerAdapter =
-                    LoggerAdapter.createDefault(HibernateDAO.class.getSimpleName());
+                    LoggerAdapter.createDefault(ResultDAO.class.getSimpleName());
 
-    private final SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
     private String hqlString;
 
 
-    public HibernateDAO(String hqlString) {
-        this.hqlString = hqlString;
+    public ResultDAO() {
+        this.hqlString = "From Result";
 
         try {
             Configuration configuration = new Configuration().configure();
@@ -41,34 +45,21 @@ public final class HibernateDAO<T> implements DAO<T> {
     }
 
 
-    @Override
-    public List<T> get() {
-//        List<T> objects = new ArrayList<>();
-//        openSessionFor((session) ->
-//            session.createQuery(hqlString)
-//                   .list()
-//                   .forEach(object -> objects.add((T) object))
-//        );
-//
-//        return objects;
-
+    public List<Result> get() {
         try(Session session = sessionFactory.openSession()) {
             return session.createQuery(hqlString).list();
         }
     }
 
-    @Override
-    public void create(List<T> objects) {
+    public void create(List<Result> objects) {
         openTransactionFor(session -> objects.forEach(session::save));
     }
 
-    @Override
-    public void update(List<T> objects) {
+    public void update(List<Result> objects) {
         openTransactionFor(session -> objects.forEach(session::update));
     }
 
-    @Override
-    public void delete(List<T> objects) {
+    public void delete(List<Result> objects) {
         openTransactionFor(session -> objects.forEach(session::delete));
     }
 

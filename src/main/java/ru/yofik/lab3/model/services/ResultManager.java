@@ -2,10 +2,10 @@ package ru.yofik.lab3.model.services;
 
 import lombok.Getter;
 import ru.yofik.lab3.model.entities.Result;
-import ru.yofik.lab3.storage.DAO;
-import ru.yofik.lab3.storage.HibernateDAO;
+import ru.yofik.lab3.storage.ResultDAO;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 import java.util.Collections;
@@ -17,17 +17,17 @@ import java.util.List;
 public class ResultManager implements Serializable {
     private static final long UID = 123L;
 
-    private DAO<Result> resultDAO;
+    @ManagedProperty(value = "#{dao}")
+    private ResultDAO resultDAO;
 
     @Getter
-    private final List<Result> results;
+    private List<Result> results;
 
     @Getter
     private Result currentResult;
 
 
     public ResultManager() {
-        this.resultDAO = new HibernateDAO<>("From Result");
         results = resultDAO.get();
         currentResult = new Result();
     }
