@@ -18,7 +18,8 @@ public final class Result implements Serializable {
 
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(sequenceName = "result_id_seq", name = "result_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "result_id_seq")
     private long id;
 
     @Column(nullable = false)
