@@ -23,17 +23,17 @@ public final class Result implements Serializable {
     private long id;
 
     @Column(nullable = false)
-    private double x;
+    private Double x;
 
     @Column(nullable = false)
-    private double y;
+    private Double y;
 
     @Column(nullable = false)
-    private double r;
+    private Double r;
 
     @Column(nullable = false)
     private boolean isHit;
 
     @Column(nullable = false)
-    private Date currentTime;
+    private String currentTime;
 }
