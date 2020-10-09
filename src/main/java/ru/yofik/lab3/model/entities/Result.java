@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "results")
@@ -31,4 +32,7 @@ public final class Result implements Serializable {
 
     @Column(nullable = false)
     private boolean isHit;
+
+    @Column(nullable = false)
+    private Date currentTime;
 }

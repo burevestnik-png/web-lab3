@@ -9,6 +9,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @ManagedBean(name = "resultsBean")
@@ -33,6 +34,7 @@ public class ResultManager implements Serializable {
 
 
     public void addResult() {
+        currentResult.setCurrentTime(new Date(System.currentTimeMillis()));
         currentResult.setHit(HitChecker.isHit(currentResult.getX(), currentResult.getY(), currentResult.getR()));
         results.add(currentResult);
 
