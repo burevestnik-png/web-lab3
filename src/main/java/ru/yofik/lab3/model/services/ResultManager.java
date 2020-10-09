@@ -37,7 +37,7 @@ public class ResultManager implements Serializable {
 
 
     public void addResult() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss yyyy.MM.dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy");
         currentResult.setCurrentTime(dateFormat.format(new Date(System.currentTimeMillis())));
         currentResult.setHit(HitChecker.isHit(
                 currentResult.getX(),
