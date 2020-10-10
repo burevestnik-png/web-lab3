@@ -17,7 +17,18 @@ export default class App {
             console.log(document.getElementsByTagName("form").elements);
             const clickPoint = this.graph.getClickPoint(event);
 
+            console.log(clickPoint.x);
             const r = DataExtractor.getR();
+
+            if (r === undefined) {
+                alert("Ops. Choose r.");
+                return;
+            }
+
+            const relativeUnit = 100 / r;
+            $("#graph-from\\:x-value_input").val(((clickPoint.x - 150) / relativeUnit).toFixed(2));
+
+
             // if (r === undefined) {
             //     this.modal.open(
             //         "Oops",

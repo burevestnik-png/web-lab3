@@ -14,7 +14,7 @@
             <f:metadata>
                 <f:event type="preRenderView" listener="#{resultsBean.init}" />
             </f:metadata>
-            
+
             <div class="row"
                  style="margin-top: 3rem;"
             >
@@ -48,6 +48,9 @@
                             <p:outputLabel for="y-value"
                                            value="Choose Y value:"
                             />
+                            <p:inputNumber id="y-value-hidden"
+                                           type="hidden"
+                                           value="#{resultsBean.currentResult.y}"/>
                             <p:selectOneRadio id="y-value"
                                               layout="grid"
                                               columns="3"
@@ -113,6 +116,11 @@
                             </p:commandButton>
                         </div>
                     </h:form>
+                    <span>
+                    #{resultsBean.currentResult.x}
+                        #{resultsBean.currentResult.y}
+                        #{resultsBean.currentResult.r}
+                    </span>
                 </div>
 
                 <div class="col s12">
@@ -150,7 +158,6 @@
                 </div>
             </div>
         </ui:define>
-
         <ui:define name="scripts">
             <script type="module"
                     src="${pageContext.request.contextPath}/web-lab3-1.0/resources/js/index.js"

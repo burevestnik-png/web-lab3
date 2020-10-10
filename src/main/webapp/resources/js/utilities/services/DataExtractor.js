@@ -13,7 +13,7 @@ export default class DataExtractor {
     }
 
     static getR() {
-        return undefined;
+        return $('#graph-form\\:r-value_input').val();
     }
 
     static getY() {
