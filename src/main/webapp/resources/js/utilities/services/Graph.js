@@ -5,7 +5,10 @@ export default class Graph {
         this.svgPoint = document.querySelector('svg').createSVGPoint();
     }
 
-    drawDots( x, y, r,
+    drawDots( x,
+              y,
+              r,
+              isHit,
               isCalculated = false,
               radius = 3 ) {
         const relativeUnit = 100 / r;
@@ -20,6 +23,7 @@ export default class Graph {
                 x: value,
                 y: y,
                 r: r,
+                isHit: isHit[x.indexOf(value)],
                 isCalculated: isCalculated,
                 radius: radius,
                 relativeUnit: relativeUnit
@@ -30,7 +34,7 @@ export default class Graph {
             dot.setAttributeNS(null, 'cy', isCalculated ? y : 150 - relativeUnit * y);
             dot.setAttributeNS(null, 'class', "target-dot");
             dot.setAttributeNS(null, 'r', radius.toString());
-            dot.setAttributeNS(null, 'style', 'fill: white; stroke: black;');
+            dot.setAttributeNS(null, 'style', 'fill: '+ (isHit ? 'green' : 'red') + '');
 
             container.appendChild(dot);
             dotsObjects.push(JSON.stringify(dotObject));
