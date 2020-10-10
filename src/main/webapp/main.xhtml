@@ -149,8 +149,12 @@
                     </h:panelGroup>
                 </div>
             </div>
+        </ui:define>
 
-
+        <ui:define name="scripts">
+            <script type="module"
+                    src="${pageContext.request.contextPath}/resources/js/index.js"
+            ></script>
         </ui:define>
     </ui:composition>
 </h:body>
