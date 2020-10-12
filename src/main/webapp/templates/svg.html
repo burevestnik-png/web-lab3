@@ -30,52 +30,57 @@
     ></polygon>
 
     <!-- Засечки    -->
-    <line stroke="black"
+    <line id="x-positive-line-1"
+          stroke="black"
           x1="200"
           x2="200"
           y1="155"
           y2="145"
     ></line>
-    <line stroke="black"
+    <line id="x-positive-line-2"
+          stroke="black"
           x1="250"
           x2="250"
           y1="155"
           y2="145"
     />
-
-    <line stroke="black"
+    <line id="x-negative-line-2"
+          stroke="black"
           x1="50"
           x2="50"
           y1="155"
           y2="145"
     />
-    <line stroke="black"
+    <line id="x-negative-line-1"
+          stroke="black"
           x1="100"
           x2="100"
           y1="155"
           y2="145"
     />
-
-    <line stroke="black"
+    <line id="y-negative-line-1"
+          stroke="black"
           x1="145"
           x2="155"
           y1="100"
           y2="100"
     />
-    <line stroke="black"
+    <line id="y-negative-line-2"
+          stroke="black"
           x1="145"
           x2="155"
           y1="50"
           y2="50"
     />
-
-    <line stroke="black"
+    <line id="y-positive-line-1"
+          stroke="black"
           x1="145"
           x2="155"
           y1="200"
           y2="200"
     />
-    <line stroke="black"
+    <line id="y-positive-line-2"
+          stroke="black"
           x1="145"
           x2="155"
           y1="250"
@@ -83,45 +88,53 @@
     />
 
     <!-- Подписи к засечкам    -->
-    <text fill="black"
+    <text id="x-positive-text-1"
+          fill="black"
           x="195"
           y="140"
     >R/2
     </text>
-    <text fill="black"
+    <text id="x-positive-text-2"
+          fill="black"
           x="248"
           y="140"
     >R
     </text>
 
-    <text fill="black"
+    <text id="x-negative-text-2"
+          fill="black"
           x="40"
           y="140"
     >-R
     </text>
-    <text fill="black"
+    <text id="x-negative-text-1"
+          fill="black"
           x="90"
           y="140"
     >-R/2
     </text>
 
-    <text fill="black"
+    <text id="y-positive-text-1"
+          fill="black"
           x="160"
           y="105"
     >R/2
     </text>
-    <text fill="black"
+    <text id="y-positive-text-2"
+          fill="black"
           x="160"
           y="55"
     >R
     </text>
 
-    <text fill="black"
+    <text id="y-negative-text-1"
+          fill="black"
           x="160"
           y="205"
     >-R/2
     </text>
-    <text fill="black"
+    <text id="y-negative-text-2"
+          fill="black"
           x="160"
           y="255"
     >-R
@@ -139,21 +152,24 @@
     </text>
 
     <!-- first figure triangle -->
-    <polygon fill="blue"
+    <polygon id="triangle"
+             fill="blue"
              fill-opacity="0.3"
              points="50,150 150,150 150,200"
              stroke="blue"
     ></polygon>
 
     <!-- second figure rectangle-->
-    <polygon fill="yellow"
+    <polygon id="rectangle"
+             fill="yellow"
              fill-opacity="0.3"
              points="50,150 50,50 150,50 150,150"
              stroke="yellow"
     ></polygon>
 
     <!-- third figure circle-->
-    <path d="M 200 150 A 50 50, 270, 0, 1, 150 200 L 150 150 Z"
+    <path id="circle"
+          d="M 200 150 A 50 50, 270, 0, 1, 150 200 L 150 150 Z"
           fill="green"
           fill-opacity="0.3"
           stroke="green"

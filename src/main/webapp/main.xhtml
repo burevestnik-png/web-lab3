@@ -12,14 +12,14 @@
     <ui:composition template="/templates/layout.xhtml">
         <ui:define name="content">
             <f:metadata>
-                <f:event type="preRenderView" listener="#{resultsBean.init}" />
+                <f:event type="preRenderView" listener="#{resultsBean.init}"/>
             </f:metadata>
 
             <div class="row"
                  style="margin-top: 3rem;"
             >
                 <div class="no-select col s6 center">
-                    <ui:include src="templates/svg.html" />
+                    <ui:include src="templates/svg.html"/>
                 </div>
 
                 <div class="col s6 row main-border hoverable">
@@ -32,8 +32,8 @@
                             />
                             <p:inputNumber id="x-value"
                                            autocomplete="off"
-                                           required="true"
                                            thousandSeparator="false"
+                                           required="true"
                                            minValue="-5"
                                            maxValue="3"
                                            decimalSeparator="."
@@ -48,13 +48,10 @@
                             <p:outputLabel for="y-value"
                                            value="Choose Y value:"
                             />
-                            <p:inputNumber id="y-value-hidden"
-                                           type="hidden"
-                                           value="#{resultsBean.currentResult.y}"/>
                             <p:selectOneRadio id="y-value"
+                                              required="true"
                                               layout="grid"
                                               columns="3"
-                                              required="true"
                                               value="#{resultsBean.currentResult.y}"
                             >
                                 <f:selectItem itemValue="-4"
@@ -106,21 +103,49 @@
                         <div class="col s12 center"
                              style="margin: 1rem 0 1rem;"
                         >
-                            <p:commandButton value="Submit"
-                                             ajax="false"
-                                             styleClass="waves-effect waves-light btn"
-                                             style="background-color: #607d8b"
-                                             action="#{resultsBean.addResult}"
-                            >
-<!--                                <f:ajax execute="graph-form" render="graph-table" />-->
-                            </p:commandButton>
+                            <span id="crutch">
+                                 <p:commandButton value="Submit"
+                                                  ajax="false"
+                                                  styleClass="waves-effect waves-light btn"
+                                                  style="background-color: #607d8b"
+                                                  action="#{resultsBean.addResult}"
+                                 >
+<!--                                    <f:ajax execute="graph-form" render="graph-table"/>-->
+                                </p:commandButton>
+                            </span>
                         </div>
                     </h:form>
-                    <span>
-                    #{resultsBean.currentResult.x}
-                        #{resultsBean.currentResult.y}
-                        #{resultsBean.currentResult.r}
-                    </span>
+                    <h:form id="graph-form-hidden" style="display: none;">
+                        <p:inputNumber id="x-value-hidden"
+                                       thousandSeparator="false"
+                                       minValue="-5"
+                                       maxValue="3"
+                                       required="true"
+                                       decimalSeparator="."
+                                       decimalPlaces="3"
+                                       value="#{resultsBean.currentResult.x}"
+                        />
+                        <p:inputNumber id="y-value-hidden"
+                                       thousandSeparator="false"
+                                       type="hidden"
+                                       required="true"
+                                       value="#{resultsBean.currentResult.y}"/>
+                        <p:inputNumber id="r-value-hidden"
+                                       required="true"
+                                       thousandSeparator="false"
+                                       minValue="2"
+                                       maxValue="5"
+                                       decimalSeparator="."
+                                       decimalPlaces="3"
+                                       value="#{resultsBean.currentResult.r}"
+                        />
+                        <p:commandButton value="Submit"
+                                         ajax="false"
+                                         action="#{resultsBean.addResult}"
+                        >
+<!--                            <f:ajax execute="graph-form-hidden" render="graph-table"/>-->
+                        </p:commandButton>
+                    </h:form>
                 </div>
 
                 <div class="col s12">

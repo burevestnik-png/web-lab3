@@ -13,8 +13,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-@ManagedBean(name = "resultsBean")
-@SessionScoped
+//@ManagedBean(name = "resultsBean")
+//@SessionScoped
 public class ResultManager implements Serializable {
     private static final long UID = 123L;
 
@@ -26,6 +26,7 @@ public class ResultManager implements Serializable {
     @Getter
     private Result currentResult;
 
+
     public void init() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         resultDAO =
@@ -33,20 +34,36 @@ public class ResultManager implements Serializable {
 
         results = resultDAO.get();
         currentResult = new Result();
+
+        if (results.size() > 0) {
+            currentResult.setX(null);
+            currentResult.setY(null);
+            currentResult.setR(results.get(results.size() - 1).getR());
+        } else {
+            currentResult.setX(null);
+            currentResult.setY(null);
+            currentResult.setR(5.0);
+        }
+
+        System.out.println("her");
     }
 
 
     public void addResult() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy");
         currentResult.setCurrentTime(dateFormat.format(new Date(System.currentTimeMillis())));
-        currentResult.setHit(HitChecker.isHit(
-                currentResult.getX(),
-                currentResult.getY(),
-                currentResult.getR()));
+        System.out.println(currentResult.getX());
+        System.out.println(currentResult.getY());
+        System.out.println(currentResult.getR());
+        System.out.println(HitChecker.isHit(currentResult.getX(), currentResult.getY(), currentResult.getR()));
+        currentResult.setHit(HitChecker.isHit(currentResult.getX(), currentResult.getY(), currentResult.getR()));
         results.add(currentResult);
 
         resultDAO.create(Collections.singletonList(currentResult));
 
         currentResult = new Result();
+        currentResult.setX(null);
+        currentResult.setY(null);
+        currentResult.setR(results.get(results.size() - 1).getR());
     }
 }

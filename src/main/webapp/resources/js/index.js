@@ -1,58 +1,59 @@
-import App from "./App.js";
 import Graph from "./utilities/services/Graph.js";
-import DataExtractor from "./utilities/services/DataExtractor.js";
+import Toast from "./utilities/services/Toast.js";
+import Validator from "./utilities/services/Validator.js";
 
 const graph = new Graph();
 
+document.addEventListener("DOMContentLoaded", () => {
+    graph.restoreDots();
+
+    graph.redrawField();
+    document.getElementById("graph-form:r-value_input").onchange = () => {
+        graph.redrawField();
+        graph.clearDots();
+    };
+
+    document.getElementById("crutch").onclick = () => {
+        const clickPoint = {
+            x: document.getElementById("graph-form:x-value_input").value,
+            y: document.querySelector("input[name='graph-form:y-value']:checked").value
+        };
+
+        const r = $('#graph-form\\:r-value_input').val();
+
+        if (!clickPoint.x || !clickPoint.y || !r) {
+            return;
+        }
+
+        const isHit = Validator.isHit( clickPoint.x, clickPoint.y, r);
+
+        graph.drawDots(clickPoint.x * 20 + 150, 150 - clickPoint.y * 20, r, isHit);
+    };
+});
+
 $('svg').on('click', ( event ) => {
     const clickPoint = graph.getClickPoint(event);
-
-    console.log(clickPoint.x);
-    const r = DataExtractor.getR();
+    const r = $('#graph-form\\:r-value_input').val();
 
     if (r === undefined) {
-        alert("Ops. Choose r.");
+        Toast.errorToast("You haven't chosen r");
         return;
     }
 
-    const relativeUnit = 100 / r;
-    // $("#graph-from\\:x-value_input").val(((clickPoint.x - 150) / relativeUnit).toFixed(2));
-    document.getElementById("graph-form:x-value_input").value = ((clickPoint.x - 150) / relativeUnit).toFixed(3);
-    document.getElementById("graph-form:y-value-hidden_input").value = (( 150 - clickPoint.y ) / relativeUnit).toFixed(3);
+    const relativeUnit = 20;
 
-    // if (r === undefined) {
-    //     this.modal.open(
-    //         "Oops",
-    //         "It seems that you hadn't chosen R value"
-    //     );
-    //     return;
-    // }
+    document.getElementById("graph-form-hidden:x-value-hidden_input").value = ((clickPoint.x - 150) / relativeUnit).toFixed(3);
+    document.getElementById("graph-form-hidden:x-value-hidden_hinput").value = ((clickPoint.x - 150) / relativeUnit).toFixed(3);
+    document.getElementById("graph-form-hidden:y-value-hidden_input").value = (( 150 - clickPoint.y ) / relativeUnit).toFixed(3);
+    document.getElementById("graph-form-hidden:y-value-hidden_hinput").value = (( 150 - clickPoint.y ) / relativeUnit).toFixed(3);
+    document.getElementById("graph-form-hidden:r-value-hidden_input").value = r;
+    document.getElementById("graph-form-hidden:r-value-hidden_hinput").value = r;
+    document.getElementById("graph-form-hidden:j_idt44").click();
 
-    graph.drawDots([ clickPoint.x ], clickPoint.y, r, [true],true);
-    // $('input[name="x-group"]:checked').click();
-    // this.$yInput.val('')
+    const isHit = Validator.isHit(((clickPoint.x - 150) / relativeUnit).toFixed(3),
+                                  (( 150 - clickPoint.y ) / relativeUnit).toFixed(3),
+                                  r);
 
-    // const relativeUnit = 100 / r;
-    //
-    // const formData = new FormData();
-    // formData.append("xValues", `${  ((clickPoint.x - 150) / relativeUnit).toFixed(2) }`);
-    // formData.append("y", `${ (( 150 - clickPoint.y ) / relativeUnit).toFixed(2) }`);
-    // formData.append("r", r);
-    //
-    // fetch('/web/api', {
-    //     method: 'POST',
-    //     body: formData
-    // })
-    //     .then(response => response.text())
-    //     .then(data => {
-    //         document.write(data);
-    //     })
-
-    // Toast.successToast('Data was sent to server');
+    graph.drawDots(clickPoint.x, clickPoint.y, r, isHit);
 });
 
-// document.getElementById()
-
-export function draw() {
-    console.log("her");
-}

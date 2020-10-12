@@ -30,4 +30,9 @@
 
     </navigation-rule>
 
+    <managed-bean>
+        <managed-bean-name>resultsBean</managed-bean-name>
+        <managed-bean-class>ru.yofik.lab3.model.services.ResultManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>
