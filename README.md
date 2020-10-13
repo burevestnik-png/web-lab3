@@ -1,4 +1,4 @@
-# Web lab 2
+# Web lab 3
 
 > This is the second lab in discipline WEB-programming
 
