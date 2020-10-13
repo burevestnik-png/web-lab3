@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<h:body>
+    <ui:composition template="/templates/layout.xhtml">
+        <ui:define name="content">
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{resultsBean.init}"/>
+            </f:metadata>
+
+            <div class="row"
+                 style="margin-top: 3rem;"
+            >
+                <div class="no-select col s6 center">
+                    <ui:include src="templates/svg.html"/>
+                </div>
+
+                <div class="col s6 row main-border hoverable">
+                    <h:form id="graph-form">
+                        <p class="center-align">Choose hit options:</p>
+
+                        <div class="col s12">
+                            <p:outputLabel for="x-value"
+                                           value="X value (from -5 to 3)"
+                            />
+                            <p:inputNumber id="x-value"
+                                           autocomplete="off"
+                                           thousandSeparator="false"
+                                           required="true"
+                                           minValue="-5"
+                                           maxValue="3"
+                                           decimalSeparator="."
+                                           decimalPlaces="3"
+                                           value="#{resultsBean.currentResult.x}"
+                            />
+                        </div>
+
+                        <div class="col s12 y-wrapper"
+                             style="margin: 2.5rem 0 2.5rem;"
+                        >
+                            <p:outputLabel for="y-value"
+                                           value="Choose Y value:"
+                            />
+                            <p:selectOneRadio id="y-value"
+                                              required="true"
+                                              layout="grid"
+                                              columns="3"
+                                              value="#{resultsBean.currentResult.y}"
+                            >
+                                <f:selectItem itemValue="-4"
+                                              itemLabel="-4"
+                                />
+                                <f:selectItem itemValue="-3"
+                                              itemLabel="-3"
+                                />
+                                <f:selectItem itemValue="-2"
+                                              itemLabel="-2"
+                                />
+                                <f:selectItem itemValue="-1"
+                                              itemLabel="-1"
+                                />
+                                <f:selectItem itemValue="0"
+                                              itemLabel="0"
+                                />
+                                <f:selectItem itemValue="1"
+                                              itemLabel="1"
+                                />
+                                <f:selectItem itemValue="2"
+                                              itemLabel="2"
+                                />
+                                <f:selectItem itemValue="3"
+                                              itemLabel="3"
+                                />
+                                <f:selectItem itemValue="4"
+                                              itemLabel="4"
+                                />
+                            </p:selectOneRadio>
+                        </div>
+
+                        <div class="col s12">
+                            <p:outputLabel for="r-value"
+                                           value="R value (from 2 to 5)"
+                            />
+                            <p:inputNumber id="r-value"
+                                           autocomplete="off"
+                                           required="true"
+                                           thousandSeparator="false"
+                                           minValue="2"
+                                           maxValue="5"
+                                           decimalSeparator="."
+                                           decimalPlaces="3"
+                                           value="#{resultsBean.currentResult.r}"
+                            />
+                        </div>
+
+                        <div class="col s12 center"
+                             style="margin: 1rem 0 1rem;"
+                        >
+                            <span id="crutch">
+                                 <p:commandButton value="Submit"
+                                                  ajax="false"
+                                                  styleClass="waves-effect waves-light btn"
+                                                  style="background-color: #607d8b"
+                                                  action="#{resultsBean.addResult}"
+                                 >
+<!--                                    <f:ajax execute="graph-form" render="graph-table"/>-->
+                                </p:commandButton>
+                            </span>
+                        </div>
+                    </h:form>
+                    <h:form id="graph-form-hidden" style="display: none;">
+                        <p:inputNumber id="x-value-hidden"
+                                       thousandSeparator="false"
+                                       minValue="-5"
+                                       maxValue="3"
+                                       required="true"
+                                       decimalSeparator="."
+                                       decimalPlaces="3"
+                                       value="#{resultsBean.currentResult.x}"
+                        />
+                        <p:inputNumber id="y-value-hidden"
+                                       thousandSeparator="false"
+                                       type="hidden"
+                                       required="true"
+                                       value="#{resultsBean.currentResult.y}"/>
+                        <p:inputNumber id="r-value-hidden"
+                                       required="true"
+                                       thousandSeparator="false"
+                                       minValue="2"
+                                       maxValue="5"
+                                       decimalSeparator="."
+                                       decimalPlaces="3"
+                                       value="#{resultsBean.currentResult.r}"
+                        />
+                        <p:commandButton value="Submit"
+                                         ajax="false"
+                                         action="#{resultsBean.addResult}"
+                        >
+<!--                            <f:ajax execute="graph-form-hidden" render="graph-table"/>-->
+                        </p:commandButton>
+                    </h:form>
+                </div>
+
+                <div class="col s12">
+                    <h:panelGroup id="graph-table">
+                        <h:dataTable value="#{resultsBean.results}"
+                                     var="result"
+                                     styleClass="centered highlight"
+                        >
+                            <h:column>
+                                <f:facet name="header">X</f:facet>
+                                #{result.x}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Y</f:facet>
+                                #{result.y}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">R</f:facet>
+                                #{result.r}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Result</f:facet>
+                                #{result.hit}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Timestamp</f:facet>
+                                #{result.currentTime}
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </ui:define>
+        <ui:define name="scripts">
+            <script type="module"
+                    src="${pageContext.request.contextPath}/web-lab3-1.0/resources/js/index.js"
+            ></script>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
